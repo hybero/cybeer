@@ -1,0 +1,68 @@
+
+*, ::after, ::before {
+    box-sizing: unset;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.fix-float {
+    clear: both;
+}
+
+html {
+    font-family: 'Raleway', sans-serif;
+    color: #303030;
+}
+
+body {
+    display: block;
+    margin: 0;
+}
+
+h1 {
+    margin: 0;
+    line-height: 84px;
+    color: #303030;
+}
+
+h3  {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+a {
+    color: inherit;
+}
+a:hover {
+    text-decoration: none;
+}
+
+
+.container {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+}
+
+.page-content {
+    padding: 20px 20px;
+}
+
+.logo {
+    text-align: center;
+    background-color: #eeeeee;
+}
+
+.toolbar {
+    height: 84px;
+    background-color: #e3e3e3;
+}

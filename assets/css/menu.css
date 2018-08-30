@@ -1,0 +1,22 @@
+
+.menu {
+    height: 93%;
+    background-color: #eeeeee;
+}
+
+.menu-button {
+    padding: 10px 26px;
+    margin: 4px 0;
+    font-size: 20px;
+    cursor: pointer;
+}
+.menu-button:hover {
+    background-color: #b5b5b5;
+}
+.menu-button.first {
+    margin-top: 0;
+}
+
+.menu-button-text {
+
+}
