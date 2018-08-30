@@ -81,4 +81,47 @@ class Tanks extends CI_Controller {
         }
     }
 
+    public function cast_tank($id = null)
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $user_id = 1;
+
+        $data['casting_tank'] = $this->tanks_model->get_tanks($user_id, $id);
+        $tanks = $this->tanks_model->get_tanks($user_id);
+
+        foreach($tanks as $tank) {
+            if($tank['id'] !== $data['casting_tank']['id']) {
+                $data['tanks'][$tank['id']] = $tank['type'] . ' - ' . $tank['name'];
+            }
+        }
+
+        $this->form_validation->set_rules('tank', 'Tank', 'required');
+        $this->form_validation->set_rules('amount', 'Množstvo', 'required');
+
+        if ($this->form_validation->run() === FALSE)
+        {
+            $this->load->view('templates/header', $data);
+            $this->load->view('tanks/cast_tank_form');
+            $this->load->view('templates/footer');
+        }
+        else
+        {
+            $data = $_POST;
+
+            $casting_tank = $this->tanks_model->get_tanks($user_id, $data['id']);
+            $casting_tank['status'] -= intval($data['amount']);
+            $this->tanks_model->update_tank($casting_tank);
+
+            $casted_tank = $this->tanks_model->get_tanks($user_id, $data['tank']);
+            $casted_tank['status'] += intval($data['amount']);
+            $this->tanks_model->update_tank($casted_tank);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('tanks/cast_tank_success');
+            $this->load->view('templates/footer');
+        }
+    }
+
 }

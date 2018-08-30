@@ -36,10 +36,6 @@ class Tanks_model extends CI_Model {
 
     public function update_tank($tank)
     {
-        //$this->title    = $tank['title'];
-        //$this->content  = $tank['capacity'];
-        //$this->status   = $tank['status'];
-
         $this->db->update('tanks', $tank, array('id' => $tank['id']));
     }
 

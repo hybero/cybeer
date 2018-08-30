@@ -1,2 +1,2 @@
 
-<h3>Tank bol úspešne vyprázdnený!</h3>
+<h5>Tank bol úspešne vyprázdnený!</h5>
