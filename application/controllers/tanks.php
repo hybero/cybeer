@@ -61,7 +61,7 @@ class Tanks extends CI_Controller {
     public function empty_tank($id = null, $confirmed = false)
     {
         $user_id = 1;
-        
+
         $data['tank'] = $this->tanks_model->get_tanks($user_id, $id);
 
         if ($confirmed === FALSE)
@@ -72,8 +72,12 @@ class Tanks extends CI_Controller {
         }
         else
         {
-            $this->tanks_model->set_tanks();
+            $data['tank']['status'] = 0;
+            $this->tanks_model->update_tank($data['tank']);
+
+            $this->load->view('templates/header', $data);
             $this->load->view('tanks/empty_tank_success');
+            $this->load->view('templates/footer');
         }
     }
 
