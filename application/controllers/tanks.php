@@ -124,4 +124,35 @@ class Tanks extends CI_Controller {
         }
     }
 
+    public function fill_tank($id)
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $user_id = 1;
+
+        $this->form_validation->set_rules('amount', 'Množstvo', 'required');
+
+        $data['filling_tank'] = $this->tanks_model->get_tanks($user_id, $id);
+
+        if ($this->form_validation->run() === FALSE)
+        {
+            $this->load->view('templates/header', $data);
+            $this->load->view('tanks/fill_tank_form');
+            $this->load->view('templates/footer');
+        }
+        else
+        {
+            $data = $_POST;
+            $data['filling_tank'] = $this->tanks_model->get_tanks($user_id, $id);
+
+            $data['filling_tank']['status'] += intval($data['amount']);
+            $this->tanks_model->update_tank($data['filling_tank']);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('tanks/fill_tank_success');
+            $this->load->view('templates/footer');
+        }
+    }
+
 }
