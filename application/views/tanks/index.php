@@ -32,29 +32,3 @@
 
     <?php endforeach; } ?>
 </div>
-
-<script type="text/javascript" src="<?php echo base_url();?>js/ajax.js" ></script>
-
-<script type="text/javascript">
-
-
-$('.post').click(function() {
-    $.ajax({
-        url: '<?php echo site_url('tanks/empty_tank'); ?>',
-        type: 'POST',
-        data: {
-            key: value
-        },
-        dataType: 'json',
-        success: function(data) {
-            console.log(data);
-        }
-    });
-});
-$(".button.cast").click(function(){
-    popup('cast!');
-});
-$(".button.fill").click(function(){
-    popup('fill!');
-});
-</script>
