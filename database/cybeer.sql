@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2018 at 08:06 PM
+-- Generation Time: Sep 01, 2018 at 09:18 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -45,7 +45,11 @@ CREATE TABLE `clients` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE latin1_general_ci NOT NULL,
   `surname` varchar(255) COLLATE latin1_general_ci NOT NULL,
+  `phone` varchar(255) COLLATE latin1_general_ci NOT NULL,
   `company` varchar(255) COLLATE latin1_general_ci NOT NULL,
+  `address` varchar(255) COLLATE latin1_general_ci NOT NULL,
+  `town` varchar(255) COLLATE latin1_general_ci NOT NULL,
+  `postcode` varchar(255) COLLATE latin1_general_ci NOT NULL,
   `user_id` int(11) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
