@@ -28,7 +28,7 @@
 
             <title>Cybeer</title>
         </head>
-        
+
         <body id="body">
 
             <div class="container">
@@ -57,7 +57,7 @@
                                     <div class="menu-button-text">Sklad</div>
                                 </div>
                             </a>
-                            <a href="<?php echo site_url('/'); ?>">
+                            <a href="<?php echo site_url('/clients'); ?>">
                                 <div class="menu-button">
                                     <div class="menu-button-text">Odberatelia</div>
                                 </div>
