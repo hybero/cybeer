@@ -15,7 +15,7 @@ class Clients extends CI_Controller {
         $data['title'] = 'Klienti';
 
         $this->load->view('templates/header', $data);
-        $this->load->view('tanks/index', $data);
+        $this->load->view('clients/index', $data);
         $this->load->view('templates/footer', $data);
     }
 

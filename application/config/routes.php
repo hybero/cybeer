@@ -51,9 +51,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 //$route['default_controller'] = 'welcome';
 //$route['default_controller'] = 'tanks/index';
-$route['tanks/create'] = 'tanks/create';
+
 $route['tanks/(:any)'] = 'tanks/index/$1';
 $route['tanks'] = 'tanks/index';
+$route['tanks/create'] = 'tanks/create';
+$route['tanks/update'] = 'tanks/update';
+$route['tanks/delete'] = 'tanks/delete';
+
+$route['clients/(:any)'] = 'clients/index/$1';
+$route['clients'] = 'clients/index';
+$route['clients/create'] = 'clients/create';
+$route['clients/update'] = 'clients/update';
+$route['clients/delete'] = 'clients/delete';
+
 $route['default_controller'] = 'tanks/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
