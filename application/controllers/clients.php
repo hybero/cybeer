@@ -19,6 +19,13 @@ class Clients extends CI_Controller {
         $this->load->view('templates/footer', $data);
     }
 
+    public function create()
+    {
+        $this->load->view('templates/header');
+        $this->load->view('clients/create');
+        $this->load->view('templates/footer');
+    }
+
     public function view($id = NULL)
     {
         $data['client_item'] = $this->clients_model->get_clients($id);

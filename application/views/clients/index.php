@@ -1,4 +1,12 @@
 
+<a href="<?php echo site_url('clients/create'); ?>">
+    <div class="add-client-button">
+        <i class="material-icons">add_circle</i>
+        <div class="text">Add Client</div>
+        <div class="float-fix"></div>
+    </div>
+</a>
+
 <div class="clients">
     <table class="table">
         <thead class="thead-dark">
