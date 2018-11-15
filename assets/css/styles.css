@@ -66,3 +66,11 @@ a:hover {
     height: 84px;
     background-color: #e3e3e3;
 }
+
+.action-icon {
+    float: left;
+    cursor: pointer;
+}
+.action-icon i.material-icons {
+    font-size: 24px;
+}

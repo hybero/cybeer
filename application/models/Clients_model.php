@@ -6,9 +6,9 @@ class Clients_model extends CI_Model {
         $this->load->database();
     }
 
-    public function get_clients($user_id = false, $id = false)
+    public function get_clients($user_id = false, $id = null)
     {
-        if ($id !== false) {
+        if ($id !== null && $user_id !== false) {
             $query = $this->db->get_where('clients', array('id' => $id, 'user_id' => $user_id));
             return $query->row_array();
         } else if($user_id !== false) {
@@ -43,6 +43,11 @@ class Clients_model extends CI_Model {
     public function update_client($client)
     {
         $this->db->update('clients', $client, array('id' => $client['id']));
+    }
+
+    public function delete_client($id)
+    {
+        $this->db->delete('clients', array('id' => $id));
     }
 
 }
