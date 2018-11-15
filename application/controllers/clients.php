@@ -21,9 +21,29 @@ class Clients extends CI_Controller {
 
     public function create()
     {
-        $this->load->view('templates/header');
-        $this->load->view('clients/create');
-        $this->load->view('templates/footer');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $data['title'] = 'Pridať nového užívateľa';
+        $data['user'] = ['id'=>1];
+
+        $this->form_validation->set_rules('name', 'Meno', 'required');
+        $this->form_validation->set_rules('surname', 'Priezvisko', 'required');
+
+        if ($this->form_validation->run() === FALSE)
+        {
+            $this->load->view('templates/header', $data);
+            $this->load->view('clients/create_client');
+            $this->load->view('templates/footer');
+
+        }
+        else
+        {
+            $this->clients_model->set_clients();
+            $this->load->view('templates/header', $data);
+            $this->load->view('clients/create_client_success');
+            $this->load->view('templates/footer');
+        }
     }
 
     public function view($id = NULL)

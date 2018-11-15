@@ -13,7 +13,6 @@ echo form_open('tanks/cast_tank/' . $casting_tank['id'], $attributes);
 <h5>Mnozstvo</h5>
 <input type="text" name="amount" value="" size="50" />
 
-<a href="<?php echo site_url('tanks/index'); ?>"
 <div><input type="submit" value="Preliať" /></div>
 
 </form>

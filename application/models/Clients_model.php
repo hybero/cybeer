@@ -31,8 +31,8 @@ class Clients_model extends CI_Model {
             'surname' => $this->input->post('surname'),
             'phone' => $this->input->post('phone'),
             'company' => $this->input->post('company'),
+            'town' => $this->input->post('town'),
             'address' => $this->input->post('address'),
-            'time' => $this->input->post('time'),
             'postcode' => $this->input->post('postcode'),
             'user_id' => $this->input->post('user_id'),
         );
@@ -40,9 +40,9 @@ class Clients_model extends CI_Model {
         return $this->db->insert('clients', $data);
     }
 
-    public function update_client($clent)
+    public function update_client($client)
     {
-        $this->db->update('clients', $clent, array('id' => $clent['id']));
+        $this->db->update('clients', $client, array('id' => $client['id']));
     }
 
 }
