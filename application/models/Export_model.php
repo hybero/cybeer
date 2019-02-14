@@ -28,7 +28,12 @@ class Export_model extends CI_Model {
 
     public function export_beer($data)
     {
-        return $this->db->insert('export', $data['form']);
+        $this->db->insert('export', $data['form']);
+
+        $query = $this->db->get_where('tanks', array('id' => $data['form']['tank_id']));
+        $tank = $query->row_array();
+        $tank['status'] -= $data['form']['amount'];
+        $this->db->update('tanks', $tank, array('id' => $data['form']['tank_id']));
     }
 
     public function update_item($item)
