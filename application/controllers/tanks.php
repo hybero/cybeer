@@ -5,6 +5,7 @@ class Tanks extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('tanks_model');
+        $this->load->model('brewing_model');
         $this->load->helper('url_helper');
         $this->load->helper('html');
     }
@@ -21,13 +22,18 @@ class Tanks extends CI_Controller {
 
     public function view($id = NULL)
     {
-        $data['tanks_item'] = $this->tanks_model->get_tanks($id);
+        $data['user']['id'] = 1;
+        $data['tanks_item'] = $this->tanks_model->get_tanks($data['user']['id'], $id);
 
         if (empty($data['tanks_item'])) {
             show_404();
         }
 
         $data['title'] = $data['tanks_item']['name'];
+
+        $data['brew_list'] = $this->brewing_model->get_brew_list($id);
+
+        $data['brew_log'] = $this->brewing_model->get_brew_log($data['brew_list']['id']);
 
         $this->load->view('templates/header', $data);
         $this->load->view('tanks/view', $data);
@@ -73,6 +79,7 @@ class Tanks extends CI_Controller {
         else
         {
             $data['tank']['status'] = 0;
+            unset($data['tank']['filling_amount_percent']);
             $this->tanks_model->update_tank($data['tank']);
 
             $this->load->view('templates/header', $data);
@@ -151,6 +158,36 @@ class Tanks extends CI_Controller {
 
             $this->load->view('templates/header', $data);
             $this->load->view('tanks/fill_tank_success');
+            $this->load->view('templates/footer');
+        }
+    }
+
+    public function add_tank()
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $user_id = 1;
+        $data = [];
+
+        $this->form_validation->set_rules('type', 'Typ tanku', 'required');
+        $this->form_validation->set_rules('capacity', 'Kapacita', 'required|numeric');
+
+        if ($this->form_validation->run() === FALSE)
+        {
+            $this->load->view('templates/header', $data);
+            $this->load->view('tanks/add_tank_form');
+            $this->load->view('templates/footer');
+        }
+        else
+        {
+            $data = $_POST;
+            $data['user_id'] = $user_id;
+
+            $this->tanks_model->create_tank($data);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('tanks/add_tank_success');
             $this->load->view('templates/footer');
         }
     }

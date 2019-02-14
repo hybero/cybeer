@@ -40,6 +40,15 @@ class Clients_model extends CI_Model {
         return $this->db->insert('clients', $data);
     }
 
+    public function get_clients_options($user_id)
+    {
+        $clients = $this->get_clients($user_id, null);
+        foreach($clients as $client) {
+            $clients_options[$client['id']] = $client['company'];
+        }
+        return $clients_options;
+    }
+
     public function update_client($client)
     {
         $this->db->update('clients', $client, array('id' => $client['id']));

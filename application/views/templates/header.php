@@ -20,6 +20,8 @@
                 echo link_tag('assets/css/menu.css');
                 echo link_tag('assets/css/tanks.css');
                 echo link_tag('assets/css/clients.css');
+                echo link_tag('assets/css/storage.css');
+                echo link_tag('assets/css/export.css');
                 echo link_tag('assets/css/popup.css');
             ?>
 
@@ -54,7 +56,7 @@
                                     <div class="menu-button-text">Tanky</div>
                                 </div>
                             </a>
-                            <a href="<?php echo site_url('/'); ?>">
+                            <a href="<?php echo site_url('/storage'); ?>">
                                 <div class="menu-button">
                                     <div class="menu-button-text">Sklad</div>
                                 </div>
@@ -64,7 +66,7 @@
                                     <div class="menu-button-text">Odberatelia</div>
                                 </div>
                             </a>
-                            <a href="<?php echo site_url('/'); ?>">
+                            <a href="<?php echo site_url('/export'); ?>">
                                 <div class="menu-button">
                                     <div class="menu-button-text">Pivná databáza</div>
                                 </div>

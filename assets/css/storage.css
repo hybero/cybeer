@@ -1,0 +1,34 @@
+.add-storage-button,
+.storage-history-button {
+    margin: 10px 0px 30px;
+    cursor: pointer;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 5px;
+    background-color: none;
+}
+
+.add-storage-button:hover,
+.storage-history-button:hover {
+    background-color: #80808054;
+}
+
+.add-storage-button i.material-icons,
+.storage-history-button i.material-icons {
+    font-size: 45px;
+    float: left;
+}
+
+.add-storage-button .text,
+.storage-history-button .text {
+    font-size: 23px;
+    line-height: 45px;
+    margin: 0 10px;
+    float: left;
+}
+
+.storage-history-button {
+    float: right;
+}

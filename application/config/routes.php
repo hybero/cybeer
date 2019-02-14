@@ -55,14 +55,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['tanks/create'] = 'tanks/create';
 $route['tanks/update'] = 'tanks/update';
 $route['tanks/delete'] = 'tanks/delete';
-$route['tanks/(:any)'] = 'tanks/index/$1';
+$route['tanks/add_tank'] = 'tanks/add_tank';
+$route['tanks/(:number)'] = 'tanks/view/$1';
 $route['tanks'] = 'tanks/index';
 
 $route['clients/create'] = 'clients/create';
 $route['clients/update'] = 'clients/update';
 $route['clients/delete'] = 'clients/delete';
-$route['clients/(:any)'] = 'clients/index/$1';
+$route['clients/(:number)'] = 'clients/view/$1';
 $route['clients'] = 'clients/index';
+
+$route['storage'] = 'storage/index';
+$route['storage/add'] = 'storage/add_item';
 
 $route['default_controller'] = 'tanks/index';
 $route['404_override'] = '';

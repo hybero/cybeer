@@ -1,0 +1,26 @@
+.add-export-button {
+    margin: 10px 0px 30px;
+    cursor: pointer;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 5px;
+    background-color: none;
+}
+
+.add-export-button:hover {
+    background-color: #80808054;
+}
+
+.add-export-button i.material-icons {
+    font-size: 45px;
+    float: left;
+}
+
+.add-export-button .text {
+    font-size: 23px;
+    line-height: 45px;
+    margin: 0 10px;
+    float: left;
+}
