@@ -68,7 +68,7 @@
                             </a>
                             <a href="<?php echo site_url('/export'); ?>">
                                 <div class="menu-button">
-                                    <div class="menu-button-text">Pivná databáza</div>
+                                    <div class="menu-button-text">Export</div>
                                 </div>
                             </a>
                         </div>

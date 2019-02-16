@@ -16,6 +16,16 @@ class Brewing_model extends CI_Model {
         }
     }
 
+    public function get_brew_list_by_tank_id($id = null)
+    {
+        if ($id !== null) {
+            $query = $this->db->get_where('brewing_lists', array('tank_id' => $id));
+            return $query->row_array();
+        } else {
+            return false;
+        }
+    }
+
     public function get_brew_log($brew_list_id = null)
     {
         if ($brew_list_id !== null) {
@@ -80,7 +90,7 @@ class Brewing_model extends CI_Model {
             return ['error' => true, 'msg' => 'ID varného listu je 0'];
         }
 
-        $query = $this->db->get_where('brewing_lists', array('id' => $data['tank']['id']));
+        $query = $this->db->get_where('brewing_lists', array('tank_id' => $data['tank']['id']));
         $brew_list = $query->row_array();
         $brew_list['date_end'] = date('Y-m-d H:i:s', time());
 
@@ -111,6 +121,7 @@ class Brewing_model extends CI_Model {
             $this->db->update('storage', $item, array('id' => $item['id']));
 
             $storage_log = [
+                'user_id'       => $data['user']['id'],
                 'storage_id'    => $item['id'],
                 'action'        => 'deduct',
                 'amount'        => $data['form']['amount'],

@@ -31,7 +31,7 @@ class Tanks extends CI_Controller {
 
         $data['title'] = $data['tanks_item']['name'];
 
-        $data['brew_list'] = $this->brewing_model->get_brew_list($id);
+        $data['brew_list'] = $this->brewing_model->get_brew_list_by_tank_id($id);
 
         $data['brew_log'] = $this->brewing_model->get_brew_log($data['brew_list']['id']);
 
@@ -60,7 +60,8 @@ class Tanks extends CI_Controller {
         else
         {
             $this->tanks_model->set_tanks();
-            $this->load->view('tanks/success');
+            redirect('/tanks');
+            //$this->load->view('tanks/success');
         }
     }
 
@@ -186,9 +187,10 @@ class Tanks extends CI_Controller {
 
             $this->tanks_model->create_tank($data);
 
-            $this->load->view('templates/header', $data);
-            $this->load->view('tanks/add_tank_success');
-            $this->load->view('templates/footer');
+            redirect('/tanks');
+            //$this->load->view('templates/header', $data);
+            //$this->load->view('tanks/add_tank_success');
+            //$this->load->view('templates/footer');
         }
     }
 

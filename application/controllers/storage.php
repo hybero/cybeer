@@ -119,9 +119,10 @@ class Storage extends CI_Controller {
 
             $this->storage_model->add_item($data);
 
-            $this->load->view('templates/header', $data);
-            $this->load->view('storage/add_item_success');
-            $this->load->view('templates/footer');
+            redirect('/storage');
+            //$this->load->view('templates/header', $data);
+            //$this->load->view('storage/add_item_success');
+            //$this->load->view('templates/footer');
         }
     }
 

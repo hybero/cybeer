@@ -20,10 +20,10 @@ class Storage_model extends CI_Model {
         }
     }
 
-    public function add_item()
+    public function add_item($data)
     {
         $this->load->helper('url');
-        
+
         return $this->db->insert('storage', $data);
     }
 
