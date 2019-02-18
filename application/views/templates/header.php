@@ -44,7 +44,9 @@
                     </div>
                     <div class="col-sm-10">
                         <div class="toolbar">
+                            <div class="path"><?php echo (isset($title))?'> '.$title:''; ?></div>
                             <div class="logged-in"></div>
+                            <div class="float-fix"></div>
                         </div>
                     </div>
                 </div>

@@ -68,6 +68,15 @@ a:hover {
     background-color: #e3e3e3;
 }
 
+.path {
+    float: left;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 34px 0 0 20px;
+    position: relative;
+}
+
 .action-icon {
     float: left;
     cursor: pointer;

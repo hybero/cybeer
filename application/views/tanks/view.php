@@ -25,6 +25,9 @@
                 </tr>
             </tbody>
         </table>
+        <a href="<?php echo site_url('tanks/delete/'.$tanks_item['id']); ?>">
+            <div class="button delete">Zmazať tank</div>
+        </a>
     </div>
 
     <div class="right-column">

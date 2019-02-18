@@ -54,28 +54,19 @@ class Storage extends CI_Controller {
         $this->load->library('form_validation');
 
         $data['user'] = ['id'=>1];
-        $data['title'] = 'Zmazať užívateľa';
-        $data['client'] = $this->clients_model->get_clients($data['user']['id'], $id);
+        $data['title'] = 'Zmazať položku';
+        $data['storage'] = $this->storage_model->get_items($data['user']['id'], $id);
 
-        if ($this->form_validation->run() === FALSE)
+        if($id !== null && $confirmed !== false)
         {
-            $this->load->view('templates/header', $data);
-            $this->load->view('clients/delete_client_form');
-            $this->load->view('templates/footer');
-
-        }
-        else if($id !== null && $confirmed !== false)
-        {
-            $this->clients_model->delete_client($id);
-            $this->load->view('templates/header', $data);
-            $this->load->view('clients/delete_client_success');
-            $this->load->view('templates/footer');
+            $this->storage_model->delete_item($id);
+            redirect('/storage');
         }
         else
         {
             $this->load->view('templates/header', $data);
+            $this->load->view('storage/delete_storage_form');
             $this->load->view('templates/footer');
-            die('error: ID is null');
         }
     }
 

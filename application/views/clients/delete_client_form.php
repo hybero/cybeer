@@ -18,7 +18,7 @@
         <a href="<?php echo site_url('clients/index'); ?>">
             <div id="empty-tank-no-button">Nie</div>
         </a>
-        <a href="<?php echo site_url('clients/delete_client/' . intval($client['id']) . '/true'); ?>">
+        <a href="<?php echo site_url('clients/delete/' . intval($client['id']) . '/true'); ?>">
             <div id="empty-tank-yes-button">Áno</div>
         </a>
     </div>

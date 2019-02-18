@@ -153,6 +153,10 @@
     border-radius: 17px;
 }
 
+.tank-view .button.delete {
+    background-color: #ff0000;
+}
+
 .brew-list {
     margin: 20px 0 0 0;
 }

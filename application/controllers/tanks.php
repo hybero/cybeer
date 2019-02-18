@@ -194,4 +194,29 @@ class Tanks extends CI_Controller {
         }
     }
 
+    public function delete($id = null, $confirmed = false)
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $data['user'] = ['id'=>1];
+        $data['title'] = 'Zmazať tank';
+        $data['tank'] = $this->tanks_model->get_tanks($data['user']['id'], $id);
+
+        if($id !== null && $confirmed !== false)
+        {
+            $this->tanks_model->delete_tank($id);
+            //$this->load->view('templates/header', $data);
+            //$this->load->view('clients/delete_client_success');
+            //$this->load->view('templates/footer');
+            redirect('/tanks');
+        }
+        else
+        {
+            $this->load->view('templates/header', $data);
+            $this->load->view('tanks/delete_tank_form');
+            $this->load->view('templates/footer');
+        }
+    }
+
 }

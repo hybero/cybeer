@@ -44,6 +44,11 @@ class Tanks_model extends CI_Model {
         return $this->db->insert('tanks', $data);
     }
 
+    public function delete_tank($id)
+    {
+        $this->db->delete('tanks', array('id' => $id));
+    }
+
     public function create_tank($tank)
     {
         $this->db->insert('tanks', $tank, $tank);

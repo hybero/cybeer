@@ -56,25 +56,16 @@ class Clients extends CI_Controller {
         $data['title'] = 'Zmazať užívateľa';
         $data['client'] = $this->clients_model->get_clients($data['user']['id'], $id);
 
-        if ($this->form_validation->run() === FALSE)
-        {
-            $this->load->view('templates/header', $data);
-            $this->load->view('clients/delete_client_form');
-            $this->load->view('templates/footer');
-
-        }
-        else if($id !== null && $confirmed !== false)
+        if($id !== null && $confirmed !== false)
         {
             $this->clients_model->delete_client($id);
-            $this->load->view('templates/header', $data);
-            $this->load->view('clients/delete_client_success');
-            $this->load->view('templates/footer');
+            redirect('/clients');
         }
         else
         {
             $this->load->view('templates/header', $data);
+            $this->load->view('clients/delete_client_form');
             $this->load->view('templates/footer');
-            die('error: ID is null');
         }
     }
 
