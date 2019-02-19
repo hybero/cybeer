@@ -12,14 +12,14 @@
         <thead class="thead-dark">
             <tr>
               <th scope="col">ID</th>
-              <th scope="col">First Name</th>
-              <th scope="col">Surname</th>
-              <th scope="col">Company</th>
-              <th scope="col">Phone</th>
-              <th scope="col">Town</th>
-              <th scope="col">Address</th>
-              <th scope="col">Postcode</th>
-              <th scope="col">Action</th>
+              <th scope="col">Meno</th>
+              <th scope="col">Priezvisko</th>
+              <th scope="col">Firma</th>
+              <th scope="col">Telefón</th>
+              <th scope="col">Mesto</th>
+              <th scope="col">Adresa</th>
+              <th scope="col">PSČ</th>
+              <th scope="col">Akcia</th>
             </tr>
         </thead>
         <tbody>

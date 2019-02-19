@@ -39,7 +39,7 @@
                 <div class="row no-gutters">
                     <div class="col-sm-2">
                         <div class="logo">
-                            <h1>Cybeer</h1>
+                            <h1>Brewsoft</h1>
                         </div>
                     </div>
                     <div class="col-sm-10">
