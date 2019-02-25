@@ -4,6 +4,9 @@ class Storage extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        if($this->session->userdata('logged_in') !== TRUE){
+            redirect('login');
+        }
         $this->load->model('storage_model');
         $this->load->model('storage_log_model');
         $this->load->helper('url_helper');
@@ -12,7 +15,7 @@ class Storage extends CI_Controller {
 
     public function index()
     {
-        $data['user'] = ['id'=>1];
+        $data['user'] = ['id'=>$this->session->userdata('id')];
         $data['storage'] = $this->storage_model->get_items($data['user']['id'], null);
         $data['title'] = 'Sklad';
 
@@ -27,7 +30,7 @@ class Storage extends CI_Controller {
         $this->load->library('form_validation');
 
         $data['title'] = 'Pridať nového užívateľa';
-        $data['user'] = ['id'=>1];
+        $data['user'] = ['id'=>$this->session->userdata('id')];
 
         $this->form_validation->set_rules('name', 'Meno', 'required');
         $this->form_validation->set_rules('surname', 'Priezvisko', 'required');
@@ -53,7 +56,7 @@ class Storage extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $data['user'] = ['id'=>1];
+        $data['user'] = ['id'=>$this->session->userdata('id')];
         $data['title'] = 'Zmazať položku';
         $data['storage'] = $this->storage_model->get_items($data['user']['id'], $id);
 
@@ -90,7 +93,7 @@ class Storage extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $user_id = 1;
+        $user_id = $this->session->userdata('id');
         $data = [];
 
         $this->form_validation->set_rules('name', 'Názov položky', 'required');
@@ -119,7 +122,7 @@ class Storage extends CI_Controller {
 
     public function history()
     {
-        $data['user']['id'] = 1;
+        $data['user']['id'] = $this->session->userdata('id');
         $data['storage_log'] = $this->storage_log_model->get_by_user_id($data['user']['id']);
 
         $this->load->view('templates/header', $data);

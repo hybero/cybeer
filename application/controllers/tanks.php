@@ -4,15 +4,16 @@ class Tanks extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        if($this->session->userdata('logged_in') !== TRUE){
+            redirect('login');
+        }
         $this->load->model('tanks_model');
         $this->load->model('brewing_model');
-        $this->load->helper('url_helper');
-        $this->load->helper('html');
     }
 
     public function index()
     {
-        $data['tanks'] = $this->tanks_model->get_tanks(1, false);
+        $data['tanks'] = $this->tanks_model->get_tanks($this->session->userdata('id'), false);
         $data['title'] = 'Tanky';
 
         $this->load->view('templates/header', $data);
@@ -22,7 +23,7 @@ class Tanks extends CI_Controller {
 
     public function view($id = NULL)
     {
-        $data['user']['id'] = 1;
+        $data['user']['id'] = $this->session->userdata('id');
         $data['tanks_item'] = $this->tanks_model->get_tanks($data['user']['id'], $id);
 
         if (empty($data['tanks_item'])) {
@@ -40,34 +41,9 @@ class Tanks extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
-    public function create()
-    {
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
-        $data['title'] = 'Vytvoriť nový tank';
-
-        $this->form_validation->set_rules('name', 'Názov', 'required');
-        $this->form_validation->set_rules('capacity', 'Kapacita', 'required');
-
-        if ($this->form_validation->run() === FALSE)
-        {
-            $this->load->view('templates/header', $data);
-            $this->load->view('tanks/create');
-            $this->load->view('templates/footer');
-
-        }
-        else
-        {
-            $this->tanks_model->set_tanks();
-            redirect('/tanks');
-            //$this->load->view('tanks/success');
-        }
-    }
-
     public function empty_tank($id = null, $confirmed = false)
     {
-        $user_id = 1;
+        $user_id = $this->session->userdata('id');
 
         $data['tank'] = $this->tanks_model->get_tanks($user_id, $id);
 
@@ -94,7 +70,7 @@ class Tanks extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $user_id = 1;
+        $user_id = $this->session->userdata('id');
 
         $data['casting_tank'] = $this->tanks_model->get_tanks($user_id, $id);
         $tanks = $this->tanks_model->get_tanks($user_id);
@@ -137,7 +113,7 @@ class Tanks extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $user_id = 1;
+        $user_id = $this->session->userdata('id');
 
         $this->form_validation->set_rules('amount', 'Množstvo', 'required');
 
@@ -168,7 +144,7 @@ class Tanks extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $user_id = 1;
+        $user_id = $this->session->userdata('id');
         $data = [];
 
         $this->form_validation->set_rules('type', 'Typ tanku', 'required');
@@ -199,7 +175,7 @@ class Tanks extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $data['user'] = ['id'=>1];
+        $data['user'] = ['id'=>$this->session->userdata('id')];
         $data['title'] = 'Zmazať tank';
         $data['tank'] = $this->tanks_model->get_tanks($data['user']['id'], $id);
 

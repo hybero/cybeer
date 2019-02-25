@@ -4,11 +4,12 @@ class Brewing extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        if($this->session->userdata('logged_in') !== TRUE){
+            redirect('login');
+        }
         $this->load->model('brewing_model');
         $this->load->model('tanks_model');
         $this->load->model('storage_model');
-        $this->load->helper('url_helper');
-        $this->load->helper('html');
     }
 
     public function index()
@@ -22,7 +23,7 @@ class Brewing extends CI_Controller {
         $this->load->library('form_validation');
 
         $data['title'] = 'Začať varenie';
-        $data['user'] = ['id'=>1];
+        $data['user'] = ['id'=>$this->session->userdata('id')];
 
         $data['tank'] = $this->tanks_model->get_tanks($data['user']['id'], $tank_id);
 
@@ -52,7 +53,7 @@ class Brewing extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $data['user'] = ['id'=>1];
+        $data['user'] = ['id'=>$this->session->userdata('id')];
         $data['title'] = 'Ukončiť varenie';
 
         $data['tank'] = $this->tanks_model->get_tanks($data['user']['id'], $tank_id);
@@ -75,7 +76,7 @@ class Brewing extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $data['user']['id'] = $user_id = 1;
+        $data['user']['id'] = $user_id = $this->session->userdata('id');
         $data['title'] = 'Pridať krok varenia';
 
         $data['brew_list']['id'] = $brew_list_id;

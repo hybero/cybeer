@@ -84,3 +84,26 @@ a:hover {
 .action-icon i.material-icons {
     font-size: 24px;
 }
+
+.log-in-wrapper {
+    text-align: center;
+}
+
+.log-in-container {
+    width: 300px;
+    display: inline-block;
+}
+
+.logged-in-col {
+    position: relative;
+    float: right;
+    margin: 0 10px 0 0;
+}
+
+.logged-in {
+    margin: 10 0 0 0;
+}
+
+.log-out {
+    margin: 10 0 0 0;
+}

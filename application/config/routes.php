@@ -68,6 +68,6 @@ $route['clients'] = 'clients/index';
 $route['storage'] = 'storage/index';
 $route['storage/add'] = 'storage/add_item';
 
-$route['default_controller'] = 'tanks/index';
+$route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
