@@ -15,7 +15,7 @@ class Export extends CI_Controller {
     {
         $data['user'] = ['id'=>1];
         $data['exports'] = $this->export_model->get_exports($data['user']['id'], null);
-        $data['title'] = 'Pivná databáza';
+        $data['title'] = 'Export';
 
         $this->load->view('templates/header', $data);
         $this->load->view('export/index', $data);
