@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2019 at 04:55 PM
+-- Generation Time: Feb 25, 2019 at 11:04 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -19,8 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cybeer`
+-- Database: `brewsoft`
 --
+CREATE DATABASE IF NOT EXISTS `brewsoft` DEFAULT CHARACTER SET latin1 COLLATE latin1_general_ci;
+USE `brewsoft`;
 
 -- --------------------------------------------------------
 
@@ -54,7 +56,9 @@ CREATE TABLE `brewing_lists` (
 --
 
 INSERT INTO `brewing_lists` (`id`, `user_id`, `date_start`, `date_end`, `tank_id`) VALUES
-(5, 1, '2019-02-14 11:19:48', '2019-02-14 12:42:50', 5);
+(7, 1, '2019-02-16 10:10:45', '2019-02-16 10:19:13', 8),
+(8, 1, '2019-02-16 10:20:03', '2019-02-16 10:20:49', 9),
+(9, 1, '2019-02-16 14:47:43', NULL, 10);
 
 -- --------------------------------------------------------
 
@@ -78,13 +82,16 @@ CREATE TABLE `brewing_log` (
 --
 
 INSERT INTO `brewing_log` (`id`, `brewing_list_id`, `action`, `storage_id`, `amount`, `units`, `description`, `created`) VALUES
-(3, 5, NULL, NULL, NULL, NULL, 'Za?atie varenia: naplnenie nádrže 190 litrami vody | moja poznamka 2', '2019-02-14 11:19:48'),
-(4, 5, '', 0, '2.00', 'kg', 'prvy slad', '2019-02-14 12:28:54'),
-(5, 5, 'add', 2, '7.00', 'kg', 'Pridavame chmel', '2019-02-14 12:35:54'),
-(6, 5, 'add', 2, '1.00', 'kg', 'Pridavame chmel', '2019-02-14 12:42:14'),
-(7, 5, NULL, NULL, NULL, NULL, 'Ukon?enie varenia', '2019-02-14 12:42:50'),
-(8, 5, 'add', 4, '4.80', 'kg', 'Pridavame chmel znovu', '2019-02-14 14:39:07'),
-(9, 5, 'add', 5, '18.30', 'l', 'Psenicu davame urcite v Litroch! (\'ale\" nie :>?)', '2019-02-14 14:43:34');
+(11, 7, NULL, NULL, NULL, NULL, 'Za?atie varenia: naplnenie nádrže 180 litrami vody | ', '2019-02-16 10:10:45'),
+(12, 7, 'add', 8, '2.00', 'kg', 'Pridavam psenicu', '2019-02-16 10:18:11'),
+(13, 7, 'add', 9, '2.00', 'kg', 'Teraz ide slad', '2019-02-16 10:18:30'),
+(14, 7, NULL, NULL, NULL, NULL, 'Ukon?enie varenia', '2019-02-16 10:19:13'),
+(15, 8, NULL, NULL, NULL, NULL, 'Za?atie varenia: naplnenie nádrže 190 litrami vody | ideme skusit apu', '2019-02-16 10:20:03'),
+(16, 8, 'add', 9, '8.00', 'kg', 'Najprv slad', '2019-02-16 10:20:21'),
+(17, 8, 'add', 8, '18.00', 'kg', 'Teraz by mala ist psenica', '2019-02-16 10:20:42'),
+(18, 8, NULL, NULL, NULL, NULL, 'Ukon?enie varenia', '2019-02-16 10:20:49'),
+(19, 9, NULL, NULL, NULL, NULL, 'Za?atie varenia: naplnenie nádrže 150 litrami vody | ', '2019-02-16 14:47:44'),
+(20, 9, 'add', 8, '4.80', '', '', '2019-02-16 14:47:55');
 
 -- --------------------------------------------------------
 
@@ -113,9 +120,7 @@ INSERT INTO `clients` (`id`, `name`, `surname`, `phone`, `company`, `address`, `
 (1, 'Pavol', 'Havlik', '0950595773', 'Pivovar pod Topolom', 'Jarabikova 21/65', 'Podhajky', '555555', 1, '2018-11-14 17:41:36'),
 (2, 'Milan', 'Zahorsky', '0949 999 999', 'Hriskov', 'Lumena 2/37', 'Strmohrad', '62626', 1, '2018-11-14 17:42:52'),
 (3, 'Jozef', 'Mihalek', '0911 111 111', 'Tatry s.r.o.', 'Dziviakova 15', 'Tolava', '20020', 1, '2018-11-15 16:50:29'),
-(4, 'Jozef', 'Mihalek', '0911 111 111', 'Tatry s.r.o.', 'Dziviakova 15', 'Tolava', '20020', 1, '2018-11-15 16:51:00'),
 (5, 'Jozef', 'Mihalek', '0911 111 111', 'Tatry s.r.o.', 'Dziviakova 15', 'Tolava', '20020', 1, '2018-11-15 16:52:06'),
-(6, 'Jozef', 'Mihalek', '0911 111 111', 'Tatry s.r.o.', 'Dziviakova 15', 'Tolava', '20020', 1, '2018-11-15 16:52:30'),
 (7, 'Jozef', 'Mihalek', '0911 111 111', 'Tatry s.r.o.', 'Dziviakova 15', 'Tolava', '20020', 1, '2018-11-15 16:53:11'),
 (8, 'mariaca', 'hacaca', '000 55 88 9999', 'mno.jhj', 'mala', 'jakuza', '55555', 1, '2018-12-17 18:40:38');
 
@@ -142,8 +147,7 @@ CREATE TABLE `export` (
 --
 
 INSERT INTO `export` (`id`, `user_id`, `client_id`, `tank_id`, `amount`, `packaging`, `packaging_returned`, `created`, `updated`) VALUES
-(1, 1, 2, 1, '300.00', '6x50L sud', NULL, '2019-02-14 15:45:34', NULL),
-(2, 1, 1, 3, '100.00', '2x50L sudy', NULL, '2019-02-14 15:53:27', NULL);
+(7, 1, 1, 8, '100.00', '2x50L', NULL, '2019-02-16 10:19:36', NULL);
 
 -- --------------------------------------------------------
 
@@ -164,13 +168,7 @@ CREATE TABLE `storage` (
 --
 
 INSERT INTO `storage` (`id`, `user_id`, `name`, `amount`, `units`) VALUES
-(1, 1, 'Slad 1', '20.00', 'kg'),
-(2, 1, 'chmel 1', '20.00', 'kg'),
-(3, 1, 'slad 2', '30.00', 'kg'),
-(4, 1, 'chmel 2', '45.20', 'kg'),
-(5, 1, 'Pšenica', '9.70', 'kg'),
-(6, 1, 'Pšenica', '28.00', 'kg'),
-(7, 1, 'Pšenica', '28.00', 'kg');
+(9, 1, 'Slad', '40.00', 'kg');
 
 -- --------------------------------------------------------
 
@@ -195,8 +193,11 @@ CREATE TABLE `storage_log` (
 --
 
 INSERT INTO `storage_log` (`id`, `user_id`, `storage_id`, `action`, `amount`, `source`, `source_type`, `source_id`, `created`) VALUES
-(1, 1, 4, 'deduct', '4.80', 'Varenie', 'brewing_list', 5, '2019-02-14 14:39:07'),
-(2, 1, 5, 'deduct', '18.30', 'Varenie', 'brewing_list', 5, '2019-02-14 14:43:34');
+(3, 1, 8, 'deduct', '2.00', 'Varenie', 'brewing_list', 7, '2019-02-16 10:18:11'),
+(4, 1, 9, 'deduct', '2.00', 'Varenie', 'brewing_list', 7, '2019-02-16 10:18:30'),
+(5, 1, 9, 'deduct', '8.00', 'Varenie', 'brewing_list', 8, '2019-02-16 10:20:21'),
+(6, 1, 8, 'deduct', '18.00', 'Varenie', 'brewing_list', 8, '2019-02-16 10:20:42'),
+(7, 1, 8, 'deduct', '4.80', 'Varenie', 'brewing_list', 9, '2019-02-16 14:47:55');
 
 -- --------------------------------------------------------
 
@@ -218,13 +219,8 @@ CREATE TABLE `tanks` (
 --
 
 INSERT INTO `tanks` (`id`, `user_id`, `type`, `name`, `capacity`, `status`) VALUES
-(1, 1, 'CL', 'Budweiser', '200.00', '120.00'),
-(2, 1, 'CL', 'Epa', '200.00', '80.00'),
-(3, 1, 'CL', 'Apa', '200.00', '555.00'),
-(4, 1, 'CL', 'Zlatý Bažant', '200.00', '48.00'),
-(5, 1, 'CK', 'Stella', '200.00', '190.00'),
-(6, 1, 'CK', NULL, '200.00', '0.00'),
-(7, 1, 'CK', NULL, '300.00', '0.00');
+(9, 1, 'CL', 'Apa', '200.00', '190.00'),
+(10, 1, 'CK', 'Epa 14', '500.00', '150.00');
 
 -- --------------------------------------------------------
 
@@ -332,13 +328,13 @@ ALTER TABLE `beers`
 -- AUTO_INCREMENT for table `brewing_lists`
 --
 ALTER TABLE `brewing_lists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `brewing_log`
 --
 ALTER TABLE `brewing_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `clients`
@@ -350,25 +346,25 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT for table `export`
 --
 ALTER TABLE `export`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `storage`
 --
 ALTER TABLE `storage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `storage_log`
 --
 ALTER TABLE `storage_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tanks`
 --
 ALTER TABLE `tanks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -380,3 +376,6 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+CREATE USER 'brewsoft'@'%' IDENTIFIED VIA mysql_native_password USING '***';GRANT ALL PRIVILEGES ON *.* TO 'brewsoft'@'%' REQUIRE NONE WITH GRANT OPTION MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;GRANT ALL PRIVILEGES ON `brewsoft`.* TO 'brewsoft'@'%';
